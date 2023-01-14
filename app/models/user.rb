@@ -12,5 +12,5 @@ class User < ApplicationRecord
 
   has_many :received_follow_requests, class_name: "FollowRequest", foreign_key: "recipient_id"
 
-  has_many :sent_follow_requests, class_name: "FollowRequest", foreign_key: "sender_id" # comment test
+  has_many :sent_follow_requests, class_name: "FollowRequest", foreign_key: "sender_id"
 end
