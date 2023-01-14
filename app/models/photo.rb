@@ -25,4 +25,8 @@ class Photo < ApplicationRecord
   has_many :comments
 
   has_many :likes
+
+  has_many :fans, through: :likes # many to many association: one photo can have many users that likes it but also a user can like many photos
+
+  has_many :authors, through: :comments 
 end
