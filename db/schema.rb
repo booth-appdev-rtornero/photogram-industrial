@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_14_182323) do
+ActiveRecord::Schema.define(version: 2023_01_14_182921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2023_01_14_182323) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_id"], name: "index_comments_on_author_id"
     t.index ["photo_id"], name: "index_comments_on_photo_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "fan_id", null: false
+    t.bigint "photo_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fan_id"], name: "index_likes_on_fan_id"
+    t.index ["photo_id"], name: "index_likes_on_photo_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -56,5 +65,7 @@ ActiveRecord::Schema.define(version: 2023_01_14_182323) do
 
   add_foreign_key "comments", "photos"
   add_foreign_key "comments", "users", column: "author_id"
+  add_foreign_key "likes", "photos"
+  add_foreign_key "likes", "users", column: "fan_id"
   add_foreign_key "photos", "users", column: "owner_id"
 end
