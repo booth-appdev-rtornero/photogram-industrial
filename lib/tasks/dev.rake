@@ -15,7 +15,7 @@ task sample_data: :environment do
   usernames << "bob"
   usernames << "rai"
   usernames << "berni"
-  usernames << "ragu"
+  usernames << "raghu"
   
 
   usernames.each do |username|
