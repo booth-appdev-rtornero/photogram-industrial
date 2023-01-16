@@ -40,7 +40,7 @@ task sample_data: :environment do
   p "#{FollowRequest.count} follow requests have been created."
 
   users.each do |user|
-    rand(10).times do 
+    rand(20).times do 
       photo = user.own_photos.create(
         caption: Faker::Quote.jack_handey,
         image: "https://robohash.org/#{rand(9999)}"
@@ -51,7 +51,7 @@ task sample_data: :environment do
           photo.fans << follower # pushing into the fans collection of the photo created. Unique use of the shovel operator
         end
 
-        if rand < 0.25
+        if rand < 0.4
           photo.comments.create(
             body: Faker::Quote.jack_handey,
             author: follower
