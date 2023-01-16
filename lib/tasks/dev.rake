@@ -4,20 +4,23 @@ task sample_data: :environment do
   if Rails.env.development?
     Like.destroy_all #destroy children objects first
     Comment.destroy_all #destroy children objects first
-    Photo.destroy_all #destroy children objects first
     FollowRequest.destroy_all #destroy children objects first
+    Photo.destroy_all #destroy children objects first
     User.destroy_all
   end
+
+  usernames = Array.new{ Faker::Name.first_name }
+
+  usernames << "alice"
+  usernames << "bob"
   
-  12.times do
-    name = Faker::Name.first_name.downcase
-    u = User.create(
-      email: "#{name}@example.com",
-      username: name,
+  usernames.each do |username|
+    User.create(
+      email: "#{username}@example.com",
       password: "password",
+      username: username.downcase,
       private: [true, false].sample
     )
-    p u.errors.full_messages
   end
   p "#{User.count} users have been created."
 
@@ -33,7 +36,7 @@ task sample_data: :environment do
       end
     end
   end
-  
+
   p "#{FollowRequest.count} follow requests have been created."
 
   users.each do |user|
