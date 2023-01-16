@@ -13,7 +13,11 @@ task sample_data: :environment do
 
   usernames << "alice"
   usernames << "bob"
+  usernames << "rai"
+  usernames << "berni"
+  usernames << "ragu"
   
+
   usernames.each do |username|
     User.create(
       email: "#{username}@example.com",
