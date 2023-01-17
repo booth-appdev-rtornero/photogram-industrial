@@ -24,6 +24,9 @@
   </div>
 </div>
 
-<% current_user.accepted_sent_follow_requests.each do |follow_request| %>
-  <%= link_to follow_request.sender.username, user_path(follow_request.sender.username), class: "list-group-item list-group-item-action" %>
+<% current_user.feed.each do |photo| %>
+
+
+    <%= render "photos/photo", photo: photo %>
+
 <% end %>
