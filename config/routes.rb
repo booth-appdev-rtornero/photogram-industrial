@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "photos#index"
+  root "photos#following"
 
   devise_for :users
   
@@ -12,9 +12,11 @@ Rails.application.routes.draw do
 
   get ":username/feed" => "photos#following", as: :following_photos
 
+  get ":username/discover" => "photos#followingliked", as: :followingliked_photos
+
   get ":username/followers" => "users#followers", as: :followers_users
   
   get ":username/following" => "users#following", as: :following_users
-
+  
   get ":username" => "users#show", as: :user
 end

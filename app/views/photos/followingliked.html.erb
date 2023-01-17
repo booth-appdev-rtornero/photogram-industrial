@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-6 offset-md-3">
     <h1 class="display-4">
-      Feed
+      Discover
     </h1>
-    <h2 class="lead text">
-      Posts by people you follow
-    </h2>
+    <p class="lead text">
+      Posts liked by people you follow
+    </h3>
 
     <ul class="nav nav-pills nav-justified">
       <li class="nav-item">
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<% current_user.feed.each do |photo| %>
+<% current_user.discover.each do |photo| %>
 
     <%= render "photos/photo", photo: photo %>
 

@@ -1,27 +1,34 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: %i[ show edit update destroy ]
 
+
   # GET /photos or /photos.json
   def index
     @photos = Photo.all
+    @user = current_user
   end
 
   # GET /photos/1 or /photos/1.json
   def show
+    @user = current_user
   end
 
   # GET /photos/new
   def new
+    @user = current_user
     @photo = Photo.new
   end
 
   # GET /photos/1/edit
   def edit
+    @user = current_user
   end
 
   # POST /photos or /photos.json
   def create
     @photo = Photo.new(photo_params)
+    @user = current_user
+    @photo.owner_id = @user.id
 
     respond_to do |format|
       if @photo.save
@@ -62,7 +69,11 @@ class PhotosController < ApplicationController
   end
 
   def following
-    @user = User.find_by!(username: params.fetch(:username))
+    @user = current_user
+  end
+
+  def followingliked
+    @user = current_user
   end
 
   private
