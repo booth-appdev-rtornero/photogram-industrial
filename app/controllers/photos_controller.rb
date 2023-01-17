@@ -69,11 +69,11 @@ class PhotosController < ApplicationController
   end
 
   def following
-    @user = current_user
+    @user = User.find_by!(username: params.fetch(:username))
   end
 
   def followingliked
-    @user = current_user
+    @user = User.find_by!(username: params.fetch(:username))
   end
 
   private
